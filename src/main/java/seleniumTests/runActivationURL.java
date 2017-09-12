@@ -21,7 +21,6 @@ import org.testng.annotations.Test;
 import AutomantionSupport.scrollToElement;
 import javaMail.CheckingMails;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class runActivationURL {
 	//Email Credentials for GMail
@@ -115,7 +114,7 @@ public class runActivationURL {
 				 WebElement phoneTextBox=driver.findElement(By.xpath("//div[@en-of='prov/element/container-main/container-form/input-phone']/input"));
 				 phoneTextBox.sendKeys("0430218963");//change accordingly
 				 
-				 //Need to scroll for sub domail text box
+				 //Need to scroll for sub domain text box
 				 //Creating an object of scrollToElement class
 				 scrollToElement scrollToSubdomainTextBox=new scrollToElement();
 				 
@@ -173,7 +172,46 @@ public class runActivationURL {
 			 driver.get(LinkURL);
 			 String PageTitleSignUp=driver.getTitle();
 			 Assert.assertTrue(PageTitleSignUp.contains("Noggin"));//Asserting if Page title is valid for Sign up landing page 
-			 Thread.sleep(10000);
+			 
+			
+			 
+			 try{
+				//Creating Wait of 60 secs
+				 WebDriverWait waitForElement=new WebDriverWait(driver, 60);
+				 		 
+				 //check if all the elements we want to enter data are loaded
+				 waitForElement.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@en-of='app/provisioning/element/container-main/container-form/input-password']/input")));//password field
+				 waitForElement.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@en-of='app/provisioning/element/container-main/container-form/input-password-confirm']/input")));//confirm password field
+				 waitForElement.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@en-of='app/provisioning/element/container-main/container-form/input-terms']//i[@class='en-checkbox__helper']")));//Terms and Conditions Check box
+				 waitForElement.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[text()='All done!']")));//All Done button
+				 //Fill Password, Confirm Password, check T&C check box and then click All Done button
+				 WebElement passwordTextBox=driver.findElement(By.xpath("//div[@en-of='app/provisioning/element/container-main/container-form/input-password']/input"));
+				 passwordTextBox.sendKeys("qaNogginTest");//change accordingly
+				 
+				 WebElement confirmPasswordTextBox=driver.findElement(By.xpath("//div[@en-of='app/provisioning/element/container-main/container-form/input-password-confirm']/input"));
+				 confirmPasswordTextBox.sendKeys("qaNogginTest");//change accordingly
+				 
+				 WebElement termAndConditionsCheckBox=driver.findElement(By.xpath("//div[@en-of='app/provisioning/element/container-main/container-form/input-terms']//i[@class='en-checkbox__helper']"));
+				 termAndConditionsCheckBox.click();
+				 
+				 //Need to scroll for sub domain text box
+				 //Creating an object of scrollToElement class
+				 scrollToElement scrollToAllDoneButton=new scrollToElement();			 	 
+				 WebElement AllDoneButton=driver.findElement(By.xpath("//span[text()='All done!']"));
+				 //scroll to All Done button
+				 scrollToAllDoneButton.ScrollElementIntoView(driver, AllDoneButton);
+				 AllDoneButton.click();
+				 
+				 Thread.sleep(60000);
+			 
+			 }
+			 catch(NoSuchElementException ex){
+				 ex.printStackTrace();
+			 }
+			 catch(TimeoutException ex){
+				 ex.printStackTrace();
+			 }
+			 
 		 }
 		 
 		 @AfterClass
