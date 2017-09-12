@@ -37,8 +37,13 @@ public String checkAndFindActivationURL(String host, String user,String password
 	      Store store = session.getStore("imaps");
 	  
 	      store.connect(host, user, password);//connect to GMail using imap protocol
-	         
-	      Folder folder = (IMAPFolder) store.getFolder("inbox");//get mails from inbox folder
+	      //check folder list in GMAIL
+	      Folder[] f = store.getDefaultFolder().list();
+	      for(Folder fd:f)
+	          System.out.println(">> "+fd.getName());
+	      
+	      //Read Mail from NogginRequestor folder
+	      Folder folder = (IMAPFolder) store.getFolder("NogginRequestorActivationMail");//get mails from inbox folder
 	      
 	      System.out.print("Time ::::"+System.currentTimeMillis()+"\n");
 	

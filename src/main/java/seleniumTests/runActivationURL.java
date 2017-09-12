@@ -25,8 +25,8 @@ import org.testng.Assert;
 public class runActivationURL {
 	//Email Credentials for GMail
 	 String host = "imap.googlemail.com";// change accordingly
-     String username = "sabbirswitchmediatest@gmail.com";// change accordingly
-     String password = "SwitchMedia";// change accordingly
+     String username = "ssubhan@noggin.com.au";// change accordingly
+     String password = "different #77 thought house";// change accordingly
 	
 	//Creating Webdriver object
 		private WebDriver driver;
@@ -91,8 +91,8 @@ public class runActivationURL {
 				 waitForElement.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@en-of='prov/element/container-main/container-form/input-sub-domain']/input")));
 				 
 				 WebElement emailAddressTextBox=driver.findElement(By.xpath("//div[@en-of='prov/element/container-main/container-form/input-email-address']/input"));
-				 emailAddressTextBox.sendKeys("sabbirswitchmediatest+"+dateFormat.format(date)+"@gmail.com");//change accordingly
-				 signUpEmailAddress="sabbirswitchmediatest+"+dateFormat.format(date)+"@gmail.com";//Assign value to global variable to pass in  checkEmailAndFindActivationLink
+				 emailAddressTextBox.sendKeys("ssubhan+"+dateFormat.format(date)+"@noggin.com.au");//change accordingly
+				 signUpEmailAddress="ssubhan+"+dateFormat.format(date)+"@noggin.com.au";//Assign value to global variable to pass in  checkEmailAndFindActivationLink
 				 
 				 WebElement firstNameTextBox=driver.findElement(By.xpath("//div[@en-of='prov/element/container-main/container-form/input-first-name']/input"));
 				 firstNameTextBox.sendKeys("Sabbir");//change accordingly
